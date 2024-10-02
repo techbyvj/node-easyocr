@@ -16,9 +16,9 @@ Note: This package requires Python 3.6+ and pip to be installed on your system. 
 
 ## Usage
 
-node-easyocr supports both ES6 (ESM) and CommonJS module systems. Here are examples for both:
+node-easyocr supports both ES6 and CommonJS module systems. Here are examples for both:
 
-### ES6 (ESM) Usage
+### ES6 Usage
 
 ```javascript
 import { EasyOCR } from 'node-easyocr';
