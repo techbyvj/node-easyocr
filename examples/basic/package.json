@@ -9,6 +9,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "node-easyocr": "latest"
+    "node-easyocr": "^1.0.2"
   }
 }
