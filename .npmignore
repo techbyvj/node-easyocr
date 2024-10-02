@@ -65,7 +65,7 @@ node_modules/
 .env.test
 
 # Example directory
-example/
+examples/
 
 # Documentation
 docs/
