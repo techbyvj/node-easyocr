@@ -27,16 +27,31 @@ const ocr = new EasyOCR();
 
 async function main() {
   try {
-    const result = await ocr.readText('path/to/your/image.png', ['en', 'fr']);
-    console.log('OCR Result:');
-    result.forEach((item, index) => {
-      console.log(`Line ${index + 1}: ${item.text}`);
-      console.log(`Confidence: ${item.confidence}`);
-      console.log(`Bounding Box: ${JSON.stringify(item.bbox)}`);
-      console.log('---');
-    });
+    // Initialize the OCR reader with desired languages
+    await ocr.init(['en', 'fr']);
+    console.log('OCR initialized successfully');
+
+    const imagePaths = ['path/to/image1.png', 'path/to/image2.png'];
+
+    for (const imagePath of imagePaths) {
+      console.log(`Processing image: ${imagePath}`);
+      console.time('OCR Process');
+      const result = await ocr.readText(imagePath);
+      console.timeEnd('OCR Process');
+
+      console.log('OCR Result:');
+      result.forEach((item, index) => {
+        console.log(`Line ${index + 1}:`);
+        console.log(`  Text: ${item.text}`);
+        console.log(`  Confidence: ${(item.confidence * 100).toFixed(2)}%`);
+        console.log(`  Bounding Box: ${JSON.stringify(item.bbox)}`);
+        console.log('---');
+      });
+    }
   } catch (error) {
     console.error('OCR Error:', error.message);
+  } finally {
+    await ocr.close();
   }
 }
 
@@ -52,16 +67,31 @@ const ocr = new EasyOCR();
 
 async function main() {
   try {
-    const result = await ocr.readText('path/to/your/image.png', ['en', 'fr']);
-    console.log('OCR Result:');
-    result.forEach((item, index) => {
-      console.log(`Line ${index + 1}: ${item.text}`);
-      console.log(`Confidence: ${item.confidence}`);
-      console.log(`Bounding Box: ${JSON.stringify(item.bbox)}`);
-      console.log('---');
-    });
+    // Initialize the OCR reader with desired languages
+    await ocr.init(['en', 'fr']);
+    console.log('OCR initialized successfully');
+
+    const imagePaths = ['path/to/image1.png', 'path/to/image2.png'];
+
+    for (const imagePath of imagePaths) {
+      console.log(`Processing image: ${imagePath}`);
+      console.time('OCR Process');
+      const result = await ocr.readText(imagePath);
+      console.timeEnd('OCR Process');
+
+      console.log('OCR Result:');
+      result.forEach((item, index) => {
+        console.log(`Line ${index + 1}:`);
+        console.log(`  Text: ${item.text}`);
+        console.log(`  Confidence: ${(item.confidence * 100).toFixed(2)}%`);
+        console.log(`  Bounding Box: ${JSON.stringify(item.bbox)}`);
+        console.log('---');
+      });
+    }
   } catch (error) {
     console.error('OCR Error:', error.message);
+  } finally {
+    await ocr.close();
   }
 }
 
@@ -72,16 +102,21 @@ For more examples, please check the `examples/basic` directory in the project re
 
 ## API
 
-### `EasyOCRWrapper`
+### `EasyOCR`
 
 The main class for interacting with EasyOCR.
 
-#### `readText(imagePath: string, languages: string[] = ['en']): Promise<OCRResult[]>`
+#### `init(languages: string[] = ['en']): Promise<void>`
+
+Initializes the OCR reader with the specified languages.
+
+- `languages`: Array of language codes to use for OCR. Defaults to `['en']` (English).
+
+#### `readText(imagePath: string): Promise<OCRResult[]>`
 
 Performs OCR on the specified image.
 
 - `imagePath`: Path to the image file.
-- `languages`: Array of language codes to use for OCR. Defaults to `['en']` (English).
 
 Returns a Promise that resolves to an array of `OCRResult` objects:
 
@@ -92,6 +127,10 @@ interface OCRResult {
   confidence: number;
 }
 ```
+
+#### `close(): Promise<void>`
+
+Closes the OCR reader and releases resources.
 
 ## Requirements
 
