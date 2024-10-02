@@ -93,3 +93,5 @@ dist
 .idea/
 *.swp
 *.swo
+
+**/.DS_STORE
