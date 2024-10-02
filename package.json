@@ -1,0 +1,40 @@
+{
+  "name": "node-easyocr",
+  "version": "1.0.0",
+  "description": "A Node.js wrapper for the Python EasyOCR library",
+  "main": "dist/easyocr.js",
+  "types": "dist/easyocr.d.ts",
+  "scripts": {
+    "build": "tsc && npm run copy-files",
+    "copy-files": "copyfiles -u 1 src/**/*.py dist/ && copyfiles -u 1 scripts/**/* dist/scripts/",
+    "preinstall": "node scripts/setup-python-env.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ocr",
+    "easyocr",
+    "image-to-text",
+    "python",
+    "wrapper"
+  ],
+  "author": "VJ",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^14.14.31",
+    "copyfiles": "^2.4.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/techbyvj/node-easyocr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/techbyvj/node-easyocr/issues"
+  },
+  "homepage": "https://github.com/techbyvj/node-easyocr#readme"
+}

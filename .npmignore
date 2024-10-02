@@ -1,0 +1,78 @@
+# Source files
+src/
+
+# Test files
+test/
+*.test.js
+*.spec.js
+
+# Configuration files
+tsconfig.json
+.eslintrc.js
+.prettierrc
+
+# Git files
+.git/
+.gitignore
+
+# CI files
+.travis.yml
+.gitlab-ci.yml
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# nyc test coverage
+.nyc_output
+
+# Dependency directories
+node_modules/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# dotenv environment variables file
+.env
+.env.test
+
+# Example directory
+example/
+
+# Documentation
+docs/
+
+# Build scripts
+scripts/
+
+# Markdown files (except README.md)
+*.md
+!README.md
