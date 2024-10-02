@@ -7,7 +7,7 @@ interface OCRResult {
   confidence: number;
 }
 
-class EasyOCRWrapper {
+export class EasyOCR {
   private pythonPath: string;
   private scriptPath: string;
 
@@ -50,4 +50,4 @@ class EasyOCRWrapper {
   }
 }
 
-export default EasyOCRWrapper;
+export default EasyOCR;

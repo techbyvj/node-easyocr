@@ -16,12 +16,14 @@ Note: This package requires Python 3.6+ and pip to be installed on your system. 
 
 ## Usage
 
-Here's a basic example of how to use node-easyocr:
+node-easyocr supports both ES6 (ESM) and CommonJS module systems. Here are examples for both:
+
+### ES6 (ESM) Usage
 
 ```javascript
-const { default: EasyOCRWrapper } = require('node-easyocr');
+import { EasyOCR } from 'node-easyocr';
 
-const ocr = new EasyOCRWrapper();
+const ocr = new EasyOCR();
 
 async function main() {
   try {
@@ -29,6 +31,9 @@ async function main() {
     console.log('OCR Result:');
     result.forEach((item, index) => {
       console.log(`Line ${index + 1}: ${item.text}`);
+      console.log(`Confidence: ${item.confidence}`);
+      console.log(`Bounding Box: ${JSON.stringify(item.bbox)}`);
+      console.log('---');
     });
   } catch (error) {
     console.error('OCR Error:', error.message);
@@ -37,6 +42,33 @@ async function main() {
 
 main();
 ```
+
+### CommonJS Usage
+
+```javascript
+const { EasyOCR } = require('node-easyocr');
+
+const ocr = new EasyOCR();
+
+async function main() {
+  try {
+    const result = await ocr.readText('path/to/your/image.png', ['en', 'fr']);
+    console.log('OCR Result:');
+    result.forEach((item, index) => {
+      console.log(`Line ${index + 1}: ${item.text}`);
+      console.log(`Confidence: ${item.confidence}`);
+      console.log(`Bounding Box: ${JSON.stringify(item.bbox)}`);
+      console.log('---');
+    });
+  } catch (error) {
+    console.error('OCR Error:', error.message);
+  }
+}
+
+main();
+```
+
+For more examples, please check the `examples/basic` directory in the project repository.
 
 ## API
 
