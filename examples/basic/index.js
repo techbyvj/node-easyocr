@@ -1,6 +1,6 @@
-const {default: EasyOCRWrapper} = require('node-easyocr');
+const { EasyOCR } = require('node-easyocr');
 
-const ocr = new EasyOCRWrapper();
+const ocr = new EasyOCR();
 
 async function main() {
   try {
