@@ -13,9 +13,12 @@
   "keywords": [
     "ocr",
     "easyocr",
-    "image-to-text",
-    "python",
-    "wrapper"
+    "optical-character-recognition",
+    "image-processing",
+    "text-extraction",
+    "document-analysis",
+    "python-wrapper",
+    "image-to-text"
   ],
   "author": "VJ",
   "license": "MIT",
