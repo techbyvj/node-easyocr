@@ -1,6 +1,6 @@
 {
   "name": "node-easyocr",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A Node.js wrapper for the Python EasyOCR library",
   "main": "dist/easyocr.js",
   "types": "dist/easyocr.d.ts",
