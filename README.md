@@ -146,6 +146,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+## Contact
+
+You can reach out to the maintainer on X (Twitter): [@saidbyvj](https://x.com/saidbyvj)
+
 ## Issues
 
 If you find a bug or have a suggestion, please file an issue on the [GitHub repository](https://github.com/techbyvj/node-easyocr/issues).
