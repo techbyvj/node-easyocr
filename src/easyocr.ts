@@ -50,6 +50,9 @@ export class EasyOCR {
       const commandString = `${command} ${args.join(' ')}\n`;
       this.pythonProcess!.stdin!.write(commandString);
 
+      // adding this to collect partial JSON payloads, to support larger more complex image files than the data buffer response supports (JSON will be incomplete)
+      let fullResult = '';
+      
       const onData = (data: Buffer) => {
         const result = data.toString().trim();
         try {
@@ -57,7 +60,25 @@ export class EasyOCR {
           this.pythonProcess!.stdout!.removeListener('data', onData);
           resolve(parsedResult);
         } catch (error) {
-          reject(new Error(`Failed to parse Python output: ${error}`));
+          // handle commands for read_text of images differently if parsing fails
+          if (command === 'read_text') {
+            // add to the payload
+            fullResult += result;
+            try {
+                // try parse again in case it's complete
+                const parsedResult = JSON.parse(fullResult);
+                // if it is complete, we can finish the process
+                this.pythonProcess.stdout.removeListener('data', onData);
+                resolve(parsedResult);
+            }
+            catch (error) {
+              // it's incomplete, let's try again
+              console.log("waiting for full result... ", fullResult);
+            }
+        } else {
+            // all other errors go here
+            reject(new Error(`Failed to parse Python output: ${error}`));
+        }
         }
       };
 
