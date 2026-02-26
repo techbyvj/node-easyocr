@@ -1,4 +1,5 @@
 import { spawn, ChildProcess } from 'child_process';
+import { existsSync } from 'fs';
 import path from 'path';
 
 interface OCRResult {
@@ -19,7 +20,12 @@ export class EasyOCR {
   private pythonProcess: ChildProcess | null = null;
 
   constructor() {
-    this.pythonPath = 'python3';
+    // Use the venv python created by setup-python-env.js during preinstall,
+    // falling back to system python3 if the venv doesn't exist.
+    const venvBin = process.platform === 'win32' ? 'Scripts' : 'bin';
+    const venvExe = process.platform === 'win32' ? 'python.exe' : 'python';
+    const venvPython = path.join(__dirname, '..', 'venv', venvBin, venvExe);
+    this.pythonPath = existsSync(venvPython) ? venvPython : 'python3';
     this.scriptPath = path.join(__dirname, 'easyocr_script.py');
   }
 
